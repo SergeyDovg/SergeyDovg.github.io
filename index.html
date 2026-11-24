@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Слова, которые меняют отношения между людьми</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@400;700;800&display=swap">
+<style>
+/* Раскладка: детская «небесная» лента. Солнышко = слова, которые укрепляют; тучка с дождиком = слова, которые разрушают. */
+:root {
+  --bg: #eef8ff;
+  --sky-top: #cfeeff;
+  --surface: #ffffff;
+  --fg: #1f3050;
+  --muted: #52688a;
+  --line: #cfe2f3;
+  --accent: #3c7be0;
+  --accent-ink: #ffffff;
+  --good: #12805a;
+  --good-bg: #e1f6ea;
+  --bad: #b8402f;
+  --bad-bg: #ffe8e2;
+  --sun: #ffcb3d;
+  --sun-ray: #ffb21f;
+  --ink: #2e3a5c;
+  --cloud: #ffffff;
+  --cloud-edge: #b9d6ee;
+  --storm: #7d89b0;
+  --storm-edge: #5a6590;
+  --rain: #4e8fe0;
+  --bolt: #ffd23f;
+  --font-display: "Comfortaa", "Trebuchet MS", sans-serif;
+  --font-body: "Nunito", "Trebuchet MS", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101a33; --sky-top: #1a2a52; --surface: #19254a; --fg: #eaf0ff; --muted: #a2b1d6; --line: #2b3b6a;
+    --accent: #8fb2ff; --accent-ink: #101a33;
+    --good: #5fd6a4; --good-bg: #123a34; --bad: #ff9a86; --bad-bg: #43242a;
+    --sun: #ffcf4a; --sun-ray: #ffb83a; --cloud: #dfe9ff; --cloud-edge: #8aa0d4;
+    --storm: #6a769f; --storm-edge: #4a5580; --rain: #7fb0ff; --bolt: #ffd84f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101a33; --sky-top: #1a2a52; --surface: #19254a; --fg: #eaf0ff; --muted: #a2b1d6; --line: #2b3b6a;
+  --accent: #8fb2ff; --accent-ink: #101a33;
+  --good: #5fd6a4; --good-bg: #123a34; --bad: #ff9a86; --bad-bg: #43242a;
+  --sun: #ffcf4a; --sun-ray: #ffb83a; --cloud: #dfe9ff; --cloud-edge: #8aa0d4;
+  --storm: #6a769f; --storm-edge: #4a5580; --rain: #7fb0ff; --bolt: #ffd84f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--sky-top), var(--bg) 460px);
+  background-repeat: no-repeat;
+  color: var(--fg);
+  font-family: var(--font-body); font-size: 18px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.8rem, 6.5vw, 2.8rem); font-weight: 700; }
+h2 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; margin-top: 16px; }
+.eyebrow { font-family: var(--font-display); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+section { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.hrow { display: flex; align-items: center; gap: 12px; }
+.scene { width: 100%; max-width: 520px; height: auto; margin-top: 12px; }
+.ic { width: 52px; height: 52px; flex: none; }
+.ic.sm { width: 34px; height: 34px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
+.box { background: var(--surface); border: 3px solid var(--line); border-radius: 26px; padding: 20px; min-width: 0; }
+.box.good { border-color: var(--sun); }
+.box.bad { border-color: var(--storm); }
+.boxhead { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.box.good h3 { color: var(--good); }
+.box.bad h3 { color: var(--bad); }
+.box .intro { margin-bottom: 14px; }
+.box ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.box li { padding-left: 24px; position: relative; font-weight: 700; }
+.box li::before { content: ""; position: absolute; left: 0; top: .5em; width: 12px; height: 12px; border-radius: 50%; }
+.box.good li::before { background: var(--sun); box-shadow: 0 0 0 3px var(--good-bg); }
+.box.bad li::before { background: var(--storm); box-shadow: 0 0 0 3px var(--bad-bg); }
+.box li small { display: block; font-weight: 400; color: var(--muted); font-size: .95rem; margin-top: 2px; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.note { background: var(--surface); border: 3px solid var(--line); border-radius: 22px; padding: 16px 20px; font-family: var(--font-display); font-weight: 700; line-height: 1.4; }
+blockquote { margin: 0; padding: 14px 16px; border-radius: 16px; font-size: 1.05rem; }
+.good blockquote { background: var(--good-bg); }
+.bad blockquote { background: var(--bad-bg); }
+.who { color: var(--muted); font-size: .95rem; margin-top: 8px; }
+.quote + .quote { margin-top: 12px; }
+.lit { background: var(--surface); border: 3px solid var(--line); border-radius: 26px; padding: 20px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.lit blockquote { background: var(--bg); }
+.lit h4 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin: 6px 0 0; color: var(--accent); }
+/* Тест */
+.quiz { background: var(--surface); border: 3px solid var(--line); border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+.progress { height: 12px; border-radius: 6px; background: var(--line); overflow: hidden; }
+.progress > i { display: block; height: 100%; background: var(--sun); border-radius: 6px; width: 0; transition: width .3s; }
+.meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .95rem; gap: 12px; }
+.phrase { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.15rem, 4.5vw, 1.5rem); line-height: 1.35; }
+.src { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .choices { grid-template-columns: 1fr; } }
+button { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 1rem; cursor: pointer; border-radius: 20px; padding: 10px 16px; border: 3px solid transparent; min-height: 56px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.b-good { background: var(--good-bg); color: var(--good); border-color: var(--sun); }
+.b-bad { background: var(--bad-bg); color: var(--bad); border-color: var(--storm); }
+.b-next { background: var(--accent); color: var(--accent-ink); align-self: flex-start; }
+button:disabled { cursor: default; opacity: .55; }
+button.picked { opacity: 1; box-shadow: 0 0 0 3px var(--fg); }
+.feedback { border-radius: 20px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+.feedback.ok { background: var(--good-bg); }
+.feedback.no { background: var(--bad-bg); }
+.feedback b { font-family: var(--font-display); font-weight: 700; }
+.result { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.score { font-family: var(--font-display); font-weight: 700; font-size: 3rem; color: var(--accent); line-height: 1; }
+footer { color: var(--muted); font-size: .95rem; border-top: 3px dotted var(--line); padding-top: 16px; display: flex; align-items: center; gap: 10px; }
+/* Рисунки */
+.s-sun { fill: var(--sun); }
+.s-ray { stroke: var(--sun-ray); stroke-width: 6; stroke-linecap: round; }
+.s-ink { fill: var(--ink); }
+.s-inkl { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; }
+.s-cheek { fill: #ff9a8b; opacity: .65; }
+.s-white { fill: #fff; }
+.s-whitel { fill: none; stroke: #fff; stroke-width: 3.5; stroke-linecap: round; }
+.s-rain { stroke: var(--rain); stroke-width: 5; stroke-linecap: round; fill: none; }
+.s-bolt { fill: var(--bolt); stroke: var(--sun-ray); stroke-width: 2; stroke-linejoin: round; }
+.s-heart { fill: #ff8fa3; }
+.u-edge { fill: var(--cloud-edge); stroke: var(--cloud-edge); stroke-width: 7; stroke-linejoin: round; }
+.u-cloud { fill: var(--cloud); }
+.u-sedge { fill: var(--storm-edge); stroke: var(--storm-edge); stroke-width: 7; stroke-linejoin: round; }
+.u-storm { fill: var(--storm); }
+@media (prefers-reduced-motion: reduce) { .progress > i { transition: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="cs"><circle cx="36" cy="50" r="18"/><circle cx="60" cy="38" r="24"/><circle cx="86" cy="50" r="18"/><rect x="36" y="50" width="50" height="18"/></g>
+  </defs>
+  <symbol id="sun" viewBox="0 0 100 100">
+    <g class="s-ray">
+      <line x1="86" y1="50" x2="97" y2="50"/><line x1="75.5" y1="75.5" x2="83.2" y2="83.2"/>
+      <line x1="50" y1="86" x2="50" y2="97"/><line x1="24.5" y1="75.5" x2="16.8" y2="83.2"/>
+      <line x1="14" y1="50" x2="3" y2="50"/><line x1="24.5" y1="24.5" x2="16.8" y2="16.8"/>
+      <line x1="50" y1="14" x2="50" y2="3"/><line x1="75.5" y1="24.5" x2="83.2" y2="16.8"/>
+    </g>
+    <circle class="s-sun" cx="50" cy="50" r="29"/>
+    <circle class="s-ink" cx="41" cy="46" r="3.2"/><circle class="s-ink" cx="59" cy="46" r="3.2"/>
+    <circle class="s-cheek" cx="35" cy="56" r="4.5"/><circle class="s-cheek" cx="65" cy="56" r="4.5"/>
+    <path class="s-inkl" d="M40 57 Q50 68 60 57"/>
+  </symbol>
+  <symbol id="cloud" viewBox="0 0 120 80">
+    <use href="#cs" class="u-edge"/><use href="#cs" class="u-cloud"/>
+    <circle class="s-ink" cx="52" cy="46" r="2.8"/><circle class="s-ink" cx="70" cy="46" r="2.8"/>
+    <circle class="s-cheek" cx="45" cy="54" r="4"/><circle class="s-cheek" cx="77" cy="54" r="4"/>
+    <path class="s-inkl" d="M54 54 Q61 61 68 54"/>
+  </symbol>
+  <symbol id="storm" viewBox="0 0 120 100">
+    <use href="#cs" class="u-sedge"/><use href="#cs" class="u-storm"/>
+    <circle class="s-white" cx="52" cy="49" r="2.8"/><circle class="s-white" cx="70" cy="49" r="2.8"/>
+    <line class="s-whitel" x1="46" y1="41" x2="56" y2="45"/><line class="s-whitel" x1="76" y1="41" x2="66" y2="45"/>
+    <path class="s-whitel" d="M54 60 Q61 53 68 60"/>
+    <line class="s-rain" x1="34" y1="76" x2="30" y2="89"/><line class="s-rain" x1="92" y1="76" x2="88" y2="89"/>
+    <polygon class="s-bolt" points="64,66 52,84 62,84 56,98 76,78 66,78 72,66"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Проект по литературе · 6 класс</div>
+    <h1>Слова, которые меняют отношения между людьми</h1>
+    <p class="lead">Слова действительно обладают огромной силой — они могут как укрепить эмоциональную связь, так и нанести ей серьёзный урон. Слова можно разделить на 2 группы: укрепляющие и разрушающие отношения.</p>
+    <svg class="scene" viewBox="0 0 480 150" role="img" aria-label="Весёлое солнышко и облачко слева, сердитая тучка с дождиком справа">
+      <use href="#sun" x="14" y="10" width="120" height="120"/>
+      <path class="s-heart" transform="translate(150 28) scale(.8)" d="M0 -2 C-6 -10 -16 -2 0 10 C16 -2 6 -10 0 -2Z"/>
+      <path class="s-heart" transform="translate(178 14) scale(.55)" d="M0 -2 C-6 -10 -16 -2 0 10 C16 -2 6 -10 0 -2Z"/>
+      <use href="#cloud" x="150" y="48" width="120" height="80"/>
+      <use href="#storm" x="320" y="14" width="140" height="117"/>
+    </svg>
+  </header>
+
+  <section>
+    <h2>Две группы слов</h2>
+    <div class="two">
+      <div class="box good">
+        <div class="boxhead"><svg class="ic" aria-hidden="true"><use href="#sun"/></svg><h3>Слова, укрепляющие отношения</h3></div>
+        <p class="intro">Эти фразы помогают человеку чувствовать себя ценным, услышанным и поддержанным.</p>
+        <ul>
+          <li>Выражение благодарности и признательности</li>
+          <li>Конкретные комплименты</li>
+          <li>Слова поддержки в трудностях</li>
+          <li>Проявление интереса к чувствам и мыслям партнёра</li>
+          <li>Признание чувств</li>
+          <li>Извинения и признание ошибки</li>
+          <li>Выражение любви и привязанности</li>
+          <li>Предложение диалога и компромисса</li>
+        </ul>
+      </div>
+      <div class="box bad">
+        <div class="boxhead"><svg class="ic" aria-hidden="true"><use href="#storm"/></svg><h3>Слова, разрушающие отношения</h3></div>
+        <p class="intro">Эти фразы подрывают доверие, обесценивают чувства людей.</p>
+        <ul>
+          <li>Обвинения и обобщения</li>
+          <li>Манипуляции и давление</li>
+          <li>Сравнения с другими людьми</li>
+          <li>Обесценивание чувств</li>
+          <li>Угрозы и фразы, создающие сомнения</li>
+          <li>Молчание или уход от разговора</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="hrow"><svg class="ic" aria-hidden="true"><use href="#cloud"/></svg><h2>Важные нюансы</h2></div>
+    <div class="notes">
+      <div class="note">Немаловажное значение имеет с каким тоном и с какой искренностью произносятся слова.</div>
+      <div class="note">Искренность — главный критерий.</div>
+      <div class="note">Контекст имеет значение.</div>
+      <div class="note">Важно не только, что мы говорим, но и как.</div>
+      <div class="note">Умение говорить о своих чувствах и слушать.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Примеры из романа «Дубровский» А. С. Пушкина</h2>
+    <div class="two">
+      <div class="box good">
+        <div class="boxhead"><svg class="ic" aria-hidden="true"><use href="#sun"/></svg><h3>Фразы, которые укрепляют отношения</h3></div>
+        <p class="intro">В большинстве случаев нужно уметь подбирать фразы, которые будут укреплять отношения людей. Для примера можно использовать роман «Дубровский» А. С. Пушкина, в этом романе есть много примеров фраз, которые укрепляют отношения. Например:</p>
+        <div class="quote"><blockquote>«Я понял, что дом, где обитаете вы, священ. Я отказался от мнения, как от безумия».</blockquote><div class="who">Дубровский говорит Маше. Он признаёт, что был неправ, и отказывается от мести: так он показывает уважение.</div></div>
+        <div class="quote"><blockquote>«Не надо нам никого, кроме тебя, наш кормилец. Не выдавай ты нас, а мы уж за тебя станем».</blockquote><div class="who">Крестьяне говорят Владимиру. Слова преданности и поддержки укрепляют их связь.</div></div>
+      </div>
+      <div class="box bad">
+        <div class="boxhead"><svg class="ic" aria-hidden="true"><use href="#storm"/></svg><h3>Фразы, которые разрушают отношения</h3></div>
+        <p class="intro">Также в разговоре нужно стараться не использовать фразы, которые будут разрушать отношения людей. В романе «Дубровский» А. С. Пушкина есть слова и фразы, которые меняют отношения героев, а также их взгляды на друг друга. Например:</p>
+        <div class="quote"><blockquote>«Иному дворянину не мешало бы променять свою усадьбу на собачью конуру».</blockquote><div class="who">Андрей Гаврилович Дубровский о Троекурове. Обидная насмешка стала началом вражды двух бывших друзей.</div></div>
+        <div class="quote"><blockquote>«В том-то и сила, чтобы безо всякого права отнять имение».</blockquote><div class="who">Троекуров. Это слова о власти и давлении, а не о справедливости и уважении.</div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="quiz-section">
+    <div class="hrow"><svg class="ic" aria-hidden="true"><use href="#sun"/></svg><h2>Мини-тест: солнышко или тучка?</h2></div>
+    <div class="quiz" id="quiz" aria-live="polite"></div>
+  </section>
+
+  <footer><svg class="ic sm" aria-hidden="true"><use href="#cloud"/></svg><span>Проект по литературе. 6 класс.</span></footer>
+</div>
+
+<script>
+(function () {
+  var items = [
+    { t: "«Спасибо, что ты рядом. Для меня это очень важно».", ok: true, cat: "Выражение благодарности и признательности", why: "Благодарность показывает, что человек для нас важен." },
+    { t: "«Ты никогда не помогаешь по дому!»", ok: false, cat: "Обвинения и обобщения", why: "Слова «никогда» и «всегда» обобщают и обвиняют. Лучше сказать, что именно случилось и как мы себя чувствуем." },
+    { t: "«Мне нравится, как ты улыбаешься».", ok: true, cat: "Конкретные комплименты", why: "Конкретный комплимент показывает, что мы правда заметили что-то хорошее в человеке." },
+    { t: "«Если ты меня любишь, ты сделаешь это».", ok: false, cat: "Манипуляции и давление", why: "Любовь здесь превращается в условие. Так человека заставляют, а не просят." },
+    { t: "«Я на твоей стороне».", ok: true, cat: "Слова поддержки в трудностях", why: "В трудный момент человеку важно знать, что он не один." },
+    { t: "«А вот Вася поступал иначе».", ok: false, cat: "Сравнения с другими людьми", why: "Сравнение с другим человеком обесценивает. Становится обидно и хочется закрыться." },
+    { t: "«Расскажи, как ты себя чувствуешь».", ok: true, cat: "Проявление интереса к чувствам и мыслям партнёра", why: "Вопрос о чувствах показывает, что нам не всё равно и мы готовы слушать." },
+    { t: "«Не драматизируй».", ok: false, cat: "Обесценивание чувств", why: "Так человеку говорят, что его чувства неважны. Он перестаёт делиться ими." },
+    { t: "«Я чувствую себя одиноко, когда ты так говоришь».", ok: true, cat: "Признание чувств", why: "Мы честно говорим о своих чувствах и не обвиняем другого. Так легче договориться." },
+    { t: "«Да кому ты нужен, кроме меня!»", ok: false, cat: "Угрозы и фразы, создающие сомнения", why: "Эти слова пугают и заставляют сомневаться в близких отношениях." },
+    { t: "«Прости, я был(а) неправ(а)».", ok: true, cat: "Извинения и признание ошибки", why: "Признать ошибку нелегко, но так возвращается доверие." },
+    { t: "«Мне всё равно».", ok: false, cat: "Молчание или уход от разговора", why: "Безразличие закрывает разговор. Другой человек остаётся наедине с проблемой." },
+    { t: "«Я тебя люблю».", ok: true, cat: "Выражение любви и привязанности", why: "Тёплые слова нужно говорить вслух, а не только думать о них." },
+    { t: "«Давай вместе подумаем, как улучшить наши отношения».", ok: true, cat: "Предложение диалога и компромисса", why: "Оба чувствуют, что их мнение важно, и вместе ищут решение." }
+  ];
+  var el = document.getElementById("quiz");
+  var i = 0, score = 0, answered = false;
+
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function ic(name, small) { return '<svg class="ic' + (small ? ' sm' : '') + '" aria-hidden="true"><use href="#' + name + '"/></svg>'; }
+
+  function render() {
+    if (i >= items.length) { return renderResult(); }
+    var it = items[i];
+    answered = false;
+    el.innerHTML =
+      '<div class="progress"><i style="width:' + (i / items.length * 100) + '%"></i></div>' +
+      '<div class="meta"><span>Фраза ' + (i + 1) + ' из ' + items.length + '</span><span>Верных ответов: ' + score + '</span></div>' +
+      '<div><div class="phrase">' + esc(it.t) + '</div>' + (it.src ? '<div class="src">' + esc(it.src) + '</div>' : '') + '</div>' +
+      '<div class="choices">' +
+        '<button type="button" class="b-good" id="btn-good">' + ic('sun', true) + 'Укрепляет</button>' +
+        '<button type="button" class="b-bad" id="btn-bad">' + ic('storm', true) + 'Разрушает</button>' +
+      '</div><div id="fb"></div>';
+    document.getElementById("btn-good").onclick = function () { answer(true); };
+    document.getElementById("btn-bad").onclick = function () { answer(false); };
+  }
+
+  function answer(choice) {
+    if (answered) return;
+    answered = true;
+    var it = items[i];
+    var right = choice === it.ok;
+    if (right) score++;
+    var g = document.getElementById("btn-good"), b = document.getElementById("btn-bad");
+    g.disabled = true; b.disabled = true;
+    (choice ? g : b).classList.add("picked");
+    var last = i === items.length - 1;
+    document.getElementById("fb").innerHTML =
+      '<div class="feedback ' + (right ? "ok" : "no") + '">' + ic(it.ok ? 'sun' : 'storm') +
+      '<div><b>' + (right ? "Верно! " : "Не совсем. ") + 'Эта фраза ' + (it.ok ? "укрепляет" : "разрушает") + ' отношения.</b>' +
+      '<p><i>' + esc(it.cat) + '.</i> ' + esc(it.why) + '</p></div></div>' +
+      '<button type="button" class="b-next" id="btn-next" style="margin-top:14px">' + (last ? "Узнать результат" : "Дальше") + '</button>';
+    var n = document.getElementById("btn-next");
+    n.onclick = function () { i++; render(); };
+    n.focus();
+  }
+
+  function renderResult() {
+    var msg = score === items.length ? "Отлично! Ты безошибочно отличаешь добрые слова от обидных."
+      : score >= items.length - 2 ? "Хороший результат! Ты хорошо чувствуешь, как слова влияют на людей."
+      : "Неплохо. Перечитай разделы выше и попробуй ещё раз.";
+    el.innerHTML =
+      '<div class="progress"><i style="width:100%"></i></div>' +
+      '<div class="result">' + ic(score >= items.length - 2 ? 'sun' : 'cloud') +
+      '<div class="score">' + score + ' из ' + items.length + '</div><p>' + msg + '</p>' +
+      '<button type="button" class="b-next" id="btn-again">Пройти ещё раз</button></div>';
+    document.getElementById("btn-again").onclick = function () { i = 0; score = 0; render(); };
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
